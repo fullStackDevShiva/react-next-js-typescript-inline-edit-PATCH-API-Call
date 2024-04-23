@@ -1,0 +1,139 @@
+/* inline edit for textarea field starts here*/
+.update-card{
+    background-color: transparent !important;
+    border: 0 !important;
+    margin-bottom:25px !important;
+}
+.update-card-body{
+  padding:0px !important;
+}
+#inline-text-area {
+    resize: none;
+    overflow: hidden;
+    width:100%;
+    /* min-height: 14px; */
+    min-height: 60px;
+    /* max-height: 100px; */
+    max-height:auto;
+    background-color: transparent;
+    border: 0;
+    padding: 8px;
+    outline: 2px dotted #fd7e14 !important;
+  }
+  #inline-text-area:hover {
+    background-color: #edf2f7;
+    /* outline: 2px dotted #fd7e14 !important; */
+    outline: 1px solid #0d6efd !important;
+    cursor: pointer;
+  }
+  #inline-text-area:focus {
+    outline: 1px solid #0d6efd !important;
+   /* outline: 5px #fd7e14 auto Highlight !important; /* Firefox */
+   /* outline: 5px #fd7e14 auto -webkit-focus-ring-color;  /* Chrome, Safari */ 
+    padding: 8px;
+    box-shadow: 0 0 0 2px rgba(81, 203, 238, 1);
+  }
+  .update-card .update-card-footer {
+    /* padding:5px; */
+    padding:0px;
+    border:none;
+    /* border-top:2px dotted #0d6efd; */
+  }
+  .update-card .update-card-footer .update-footer-buttons{
+    float:right;
+  }
+  .update-card .update-card-footer .btn-cancel{
+    /* float:left; */
+    background:transparent;
+    color:#dc3545;
+    font-size:12px;
+    font-weight:600;
+    border:none;
+    margin-right:15px;
+  }
+  .update-card .update-card-footer .btn-update{
+    /* float:right; */
+    background:transparent;
+    color:#20c997;
+    font-size:12px;
+    font-weight:600;
+    border:none;
+  }
+  /* inline edit for textarea field ends here */
+
+  /* inline edit for input field starts here*/
+  .inline-edit-card{
+    /* background:#fff; */
+    /* margin-bottom:40px; */
+    padding-left:15px;
+    padding-right:15px;
+    margin-top:5px;
+    margin-bottom:15px;
+  }
+  /* .inline-edit-card input{
+    border:none;
+    border-radius:0;
+    background-color: #edf2f7;
+  }
+  .inline-edit-card input:hover {
+    background-color: #edf2f7;
+    outline: 2px dotted #fd7e14 !important;
+    cursor: pointer;
+  }
+  .inline-edit-card input:focus {
+    outline: 1px solid #0d6efd !important;
+    box-shadow: 0 0 0 2px rgba(81, 203, 238, 1);
+    border-radius:0;  
+  } */
+  #inline-input-field{
+    width: 75%;
+    float: left;
+    padding: 6px;
+    /* border:none; */
+    outline: 2px dotted #fd7e14 !important;
+    border-radius:0;
+    background-color: #edf2f7;
+  }
+  #inline-input-field:hover {
+    background-color: #edf2f7;
+    /* outline: 2px dotted #fd7e14 !important; */
+    outline: 1px solid #0d6efd !important;
+    cursor: pointer;
+  }
+  #inline-input-field:focus {
+    outline: 1px solid #0d6efd !important;
+    box-shadow: 0 0 0 2px rgba(81, 203, 238, 1);
+    border-radius:0;  
+  }
+  /* .inline-edit-card .input-group-append{   
+    margin: 0;
+    top: 50%;
+  } */
+  .inline-edit-card .input-group-append .btn-save-update{
+    margin-right:5px;
+    margin-left:8px;
+    border-radius:0;
+    border:none;
+    background:#20c997;
+    color:#fff;
+  }
+  .inline-edit-card .input-group-append .btn-cancel-update{
+    border-radius:0;
+    border:none;
+    background:#dc3545;
+    color:#fff;    
+  }
+  .inline-edit-card .input-group-append button svg{
+    font-size:22px;
+  }
+  /* inline edit for input field ends here*/
+
+  /* inline edit for mixled fields starts here*/
+  .update-card .update-card-body .card-input-field input{
+    border-radius:0;
+    margin-bottom:15px;
+  }
+  .update-card .update-card-body .card-textarea-field textarea{
+    border-radius:0;
+  }
+    /* inline edit for mixled fields ends here*/
