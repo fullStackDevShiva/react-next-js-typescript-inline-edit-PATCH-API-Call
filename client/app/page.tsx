@@ -9,8 +9,8 @@ export default function Home() {
   const [showEditForm, setShowEditForm] = useState<boolean>(false);
   const [editCourseData, setEditCourseData] = useState(null);
 
-  // To get the course data that to be edited
-  const getCourseData = async (itemId: string) => {
+  // To get the selected course data from database
+  const getCourseById = async (itemId: string) => {
     try {
       const res = await axios.get(`http://localhost:5000/courses/${itemId}`);
       if (!res) {
@@ -29,7 +29,7 @@ export default function Home() {
     console.log("Edit button clicked");
 
     if (showEditForm === false) {
-      getCourseData(itemId);
+      getCourseById(itemId);
       setShowEditForm(true);
     } else {
       setEditCourseData(null);
@@ -41,6 +41,7 @@ export default function Home() {
     <div className="page-layout">
       {showEditForm === false ? (
         <>
+          {/* To list all the courses */}
           <div className="w-full mt-8">
             <ItemList editFormDisplayHandle={editFormDisplayHandle} />
           </div>
@@ -49,11 +50,12 @@ export default function Home() {
 
       {editCourseData && (
         <>
+          {/* To show/hide EditView component for the selected course */}
           {showEditForm === false ? null : (
             <EditView
               data={editCourseData}
               editFormDisplayHandle={editFormDisplayHandle}
-              getCourseData={getCourseData}
+              getCourseById={getCourseById}
             />
           )}
         </>

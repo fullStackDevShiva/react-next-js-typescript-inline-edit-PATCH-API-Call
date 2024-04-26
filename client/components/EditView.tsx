@@ -1,7 +1,7 @@
 "use client";
 
 import axios from "axios";
-import { FormEvent, MouseEvent, SetStateAction, useState } from "react";
+import { MouseEvent, useState } from "react";
 import TextareaEditInline from "./TextareaEditInline";
 import InputEditInline from "./InputEditInline";
 import { FaPen } from "react-icons/fa";
@@ -18,17 +18,15 @@ interface FormData {
 interface EditFormProps {
   data: FormData;
   editFormDisplayHandle: () => void;
-  getCourseData: () => void;
+  getCourseById: () => void;
 }
 
 const EditView: React.FC<EditFormProps> = ({
   data,
   editFormDisplayHandle,
-  getCourseData,
+  getCourseById,
 }) => {
   const { _id, title, subtitle, description, prerequisites, fees } = data;
-  // const [updateData, setUpdateData] = useState<FormData | null>(null);
-  const [isVisible, setIsVisible] = useState(false);
   const [editMode, setEditMode] = useState("close-form");
 
   const iconStyle = {
@@ -46,37 +44,7 @@ const EditView: React.FC<EditFormProps> = ({
     // console.log(editMode);
   };
 
-  // Main function to update the form data - sending PUT request to the API
-  const updateFormData = async (data: FormData) => {
-    console.log(_id);
-    if (!data) {
-      console.log("data for the update not received yet");
-      return;
-    }
-    try {
-      const res = await axios.put(
-        `http://localhost:5000/courses/update/${_id}`,
-        data
-      );
-      console.log(res.data);
-      editFormDisplayHandle();
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  // This is called after the form is submitted - it then calls the form update function defined above
-  const editCourseHandle = async (
-    data: FormData,
-    event: FormEvent<HTMLFormElement>
-  ) => {
-    event.preventDefault();
-    console.log("Data updated in edit form");
-    console.log(data);
-    // setUpdateData(data);
-    updateFormData(data);
-  };
-
+  // To update the title field - sending PATCH request to the API
   const updateTitle = async (dataId: string, dataText: string) => {
     console.log(dataId);
     console.log(dataText);
@@ -94,11 +62,11 @@ const EditView: React.FC<EditFormProps> = ({
       console.log(error);
     } finally {
       setEditMode("close-form");
-      //   getCourseById(courseId);
-      getCourseData(courseId);
+      getCourseById(courseId);
     }
   };
 
+  // To update the sub-title field - sending PATCH request to the API
   const updateSubTitle = async (dataId: string, dataText: string) => {
     console.log(dataId);
     console.log(dataText);
@@ -116,32 +84,11 @@ const EditView: React.FC<EditFormProps> = ({
       console.log(error);
     } finally {
       setEditMode("close-form");
-      //   getCourseById(courseId);
-      getCourseData(courseId);
-    }
-  };
-  const updateFees = async (dataId: string, dataText: string) => {
-    console.log(dataId);
-    console.log(dataText);
-    const courseId = dataId;
-    const fees = dataText;
-    try {
-      const res = await axios.patch(
-        `http://localhost:5000/courses/edit/fees/${courseId}`,
-        {
-          fees,
-        }
-      );
-      console.log(res.data);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setEditMode("close-form");
-      //   getCourseById(courseId);
-      getCourseData(courseId);
+      getCourseById(courseId);
     }
   };
 
+  // To update the description field - sending PATCH request to the API
   const updateDescription = async (dataId: string, dataText: string) => {
     console.log(dataId);
     console.log(dataText);
@@ -159,11 +106,11 @@ const EditView: React.FC<EditFormProps> = ({
       console.log(error);
     } finally {
       setEditMode("close-form");
-      //   getCourseById(courseId);
-      getCourseData(courseId);
+      getCourseById(courseId);
     }
   };
 
+  // To update the prerequisites field - sending PATCH request to the API
   const updatePrerequisites = async (dataId: string, dataText: string) => {
     console.log(dataId);
     console.log(dataText);
@@ -178,13 +125,33 @@ const EditView: React.FC<EditFormProps> = ({
       );
       console.log(res.data);
       // setEditMode("close-form");
-      // getCourseById(courseId);
     } catch (error) {
       console.log(error);
     } finally {
       setEditMode("close-form");
-      //   getCourseById(courseId);
-      getCourseData(courseId);
+      getCourseById(courseId);
+    }
+  };
+
+  // To update the fees field - sending PATCH request to the API
+  const updateFees = async (dataId: string, dataText: string) => {
+    console.log(dataId);
+    console.log(dataText);
+    const courseId = dataId;
+    const fees = dataText;
+    try {
+      const res = await axios.patch(
+        `http://localhost:5000/courses/edit/fees/${courseId}`,
+        {
+          fees,
+        }
+      );
+      console.log(res.data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setEditMode("close-form");
+      getCourseById(courseId);
     }
   };
 
@@ -195,6 +162,7 @@ const EditView: React.FC<EditFormProps> = ({
           <h1>Edit course</h1>
           <div className="course-title">
             {editMode === "title-edit" ? (
+              // Editable field for title
               <InputEditInline
                 dataId={data._id}
                 dataText={data.title}
@@ -217,6 +185,7 @@ const EditView: React.FC<EditFormProps> = ({
           </div>
           <div className="course-subtitle">
             {editMode === "subtitle-edit" ? (
+              // Editable field for sub-title
               <InputEditInline
                 dataId={data._id}
                 dataText={data.subtitle}
@@ -240,6 +209,7 @@ const EditView: React.FC<EditFormProps> = ({
 
           <div className="course-fees">
             {editMode === "fees-edit" ? (
+              // Editable field for fees
               <InputEditInline
                 dataId={data._id}
                 dataText={data.fees}
@@ -282,6 +252,7 @@ const EditView: React.FC<EditFormProps> = ({
           </h6>
           <hr />
           {editMode === "description-edit" ? (
+            // Editable field for description
             <TextareaEditInline
               dataId={data._id}
               dataText={data.description}
@@ -321,6 +292,7 @@ const EditView: React.FC<EditFormProps> = ({
           </h6>
           <hr />
           {editMode === "prereq-edit" ? (
+            // Editable field for prerequisites
             <TextareaEditInline
               dataId={data._id}
               dataText={data.prerequisites}
